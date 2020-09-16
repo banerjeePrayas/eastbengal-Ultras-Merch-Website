@@ -1,0 +1,194 @@
+<%- include('partials/header'); -%>
+
+<header id="showcase">
+    <div class="logo" style="text-align: center">
+        <a href="/"><img class="logo-img" src="../public/images/Logo.png" alt="Logo" /></a>
+    </div>
+    <div class="container showcase-container">
+        <h1 style="color: red">
+            We are
+            <span class="txt-type" data-wait="3000" data-words='["EastBengal Ultras", "Bangal Brigade"]'></span>
+        </h1>
+        <a href="/about" class="btn">Read More</a>
+    </div>
+</header>
+
+<div id="about">
+    <div class="container">
+        <h2>About Us</h2>
+        <div class="bottom-line"></div>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
+            necessitatibus.
+        </p>
+        <div class="about">
+            <div class="about-img" data-aos="fade-right">
+                <img src="../public/images/IMG_6242.jpg" alt="" />
+            </div>
+            <div class="about-info bg-light" data-aos="fade-left">
+                <p style="padding: 1rem 2rem">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
+                    blanditiis quia adipisci, ipsam cupiditate, vel pariatur mollitia,
+                    consectetur repellat totam at temporibus fugit? Vero voluptas odit
+                    tenetur porro mollitia culpa, similique, dolorem illo adipisci
+                    praesentium placeat, ut nisi provident nostrum eveniet atque
+                    perferendis! Eveniet quo tempora magnam tenetur ex? Facere?
+                </p>
+                <button class="btn btn-danger"><a href="/about">Read More</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Shop Now -->
+<section id="shop">
+    <div class="container">
+        <h2>Our Merch</h2>
+        <div class="bottom-line"></div>
+        <p class="lead">Check Out Our Merchendise Collection</p>
+        <button class="btn shop-btn btn-danger mb-4 px-5 py-3"><a href="/order">Explore</a></button>
+        <div class="items">
+            <div class="item">
+                <div class="item-image">
+                    <img src="../public/images/Merch/CAPA1B.jpg" alt="Projcts" />
+                </div>
+                <div class="item-text">
+                    <div class="item-text-wrap">
+                        <p class="item-text-category">Ultras Cap</p>
+                        <h2 class="item-text-title">MRP: <span>250</span></h2>
+                        <button class="btn btn-danger">
+                            <a href="/shop">Shop</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-image">
+                    <img src="../public/images/Merch/scarf1.jpg" alt="Projcts" />
+                </div>
+                <div class="item-text">
+                    <div class="item-text-wrap">
+                        <p class="item-text-category">Ultras Scarf</p>
+                        <h2 class="item-text-title">MRP: <span>450</span></h2>
+                        <button class="btn btn-danger">
+                            <a href="/shop">Shop</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-image">
+                    <img src="../public/images/Merch/TSHIRT1.jpg" alt="Projcts" />
+                </div>
+                <div class="item-text">
+                    <div class="item-text-wrap">
+                        <p class="item-text-category">Ultras T-Shirt</p>
+                        <h2 class="item-text-title">MRP: <span>450</span></h2>
+                        <button class="btn btn-danger">
+                            <a href="/shop">Shop</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-image">
+                    <img src="../public/images/Merch/WhatsApp Image 2019-08-30 at 4.01.34 PM (1).jpeg" alt="Projcts" />
+                </div>
+                <div class="item-text">
+                    <div class="item-text-wrap">
+                        <p class="item-text-category">Ultras Scarf</p>
+                        <h2 class="item-text-title">MRP: <span>270</span></h2>
+                        <button class="btn btn-danger">
+                            <a href="/shop">Shop</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Youtube Marketing -->
+<section id="youtube">
+    <div class="container">
+        <h2 style="margin-bottom: 2rem">Subscribe to Our Youtube Channel</h2>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/OjZbnGsyl6M" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+<section id="gallery"></section>
+
+<%- include('partials/footer') -%>
+
+<script>
+    class TypeWriter {
+        constructor(txtElement, words, wait = 3000) {
+            this.txtElement = txtElement;
+            this.words = words;
+            this.txt = '';
+            this.wordIndex = 0;
+            this.wait = parseInt(wait, 10);
+            this.type();
+            this.isDeleting = false;
+        }
+
+        type() {
+            // Current index of word
+            const current = this.wordIndex % this.words.length;
+            // Get full text of current word
+            const fullTxt = this.words[current];
+
+            // Check if deleting
+            if (this.isDeleting) {
+                // Remove char
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                // Add char
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            // Insert txt into element
+            this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+
+            // Initial Type Speed
+            let typeSpeed = 300;
+
+            if (this.isDeleting) {
+                typeSpeed /= 2;
+            }
+
+            // If word is complete
+            if (!this.isDeleting && this.txt === fullTxt) {
+                // Make pause at end
+                typeSpeed = this.wait;
+                // Set delete to true
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+                this.isDeleting = false;
+                // Move to next word
+                this.wordIndex++;
+                // Pause before start typing
+                typeSpeed = 500;
+            }
+
+            setTimeout(() => this.type(), typeSpeed);
+        }
+    }
+
+    // Init On DOM Load
+    document.addEventListener('DOMContentLoaded', init);
+
+    // Init App
+    function init() {
+        const txtElement = document.querySelector('.txt-type');
+        const words = JSON.parse(txtElement.getAttribute('data-words'));
+        const wait = txtElement.getAttribute('data-wait');
+        // Init TypeWriter
+        new TypeWriter(txtElement, words, wait);
+        console.log('Typewriter');
+    }
+</script>
